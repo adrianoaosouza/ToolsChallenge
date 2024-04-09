@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "43230066-eade-4ee9-880f-c20dca123e5f",
+		"name": "Tool Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5056254",
+		"_collection_link": "https://red-comet-967832.postman.co/workspace/NAVA~37ac9cad-0011-4703-a541-5b922843f0da/collection/5056254-43230066-eade-4ee9-880f-c20dca123e5f?action=share&source=collection_link&creator=5056254"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "1.0.Cadastro Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"SrMaster\",\r\n\t\"email\":\"srmaster@tollchallenge.com.br\",\r\n\t\"password\":\"9876543210\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.1.Autenticar Acesso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOLL_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.0.Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\":\"srmaster@tollchallenge.com.br\",\r\n\t\"password\":\"9876543210\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Api",
+			"item": [
+				{
+					"name": "Pagamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"transacao\":{\r\n\t\t\"cartao\": \"444********1234\",\r\n\t\t\"id\": \"100023568900011\",\r\n\t\t\"descricao\": {\r\n\t\t\t\"valor\": \"1500.50\",\r\n\t\t\t\"datahora\": \"01/05/2021 18:42:00\",\r\n\t\t\t\"estabelecimento\": \"Supermarcado PetShop Mundo cão\"\r\n\t\t},\r\n\t\t\"formaPagamento\":{\r\n\t\t\t\"tipo\": \"PARCELADO\",\r\n\t\t\t\"parcelas\": \"1\"\r\n\t\t}\r\n\t}\r\n\t\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pagamentos/pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pagamentos",
+								"pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Pagamento p/ IdCartao",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b29scy1jaGFsbGVuZ2UtYXBpIiwic3ViIjoic3JtYXN0ZXJAdG9sbGNoYWxsZW5nZS5jb20uYnIiLCJleHAiOjE3MTI2Mzc5MzF9.IiEyrT8QpeOXLbsNwZI8JIR33Rt-9_DOfKJx9L5b3JA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pagamentos/consulta/100023568900001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pagamentos",
+								"consulta",
+								"100023568900001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Todos Pagamentos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b29scy1jaGFsbGVuZ2UtYXBpIiwic3ViIjoic3JtYXN0ZXJAdG9sbGNoYWxsZW5nZS5jb20uYnIiLCJleHAiOjE3MTI2Mzc5MzF9.IiEyrT8QpeOXLbsNwZI8JIR33Rt-9_DOfKJx9L5b3JA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pagamentos/consulta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pagamentos",
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estorno",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{API_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pagamentos/estorno/100023568900010",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pagamentos",
+								"estorno",
+								"100023568900010"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TOLL_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b29scy1jaGFsbGVuZ2UtYXBpIiwic3ViIjoic3JtYXN0ZXJAdG9sbGNoYWxsZW5nZS5jb20uYnIiLCJleHAiOjE3MTI2MDcwNzV9.MqiYdQ7CSLFh18w4ZGI5Qsyd9DhcsPm-eiPWF9Ih2Ts",
+			"type": "string"
+		},
+		{
+			"key": "API_TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
